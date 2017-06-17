@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { addJedi, setSuccess, setError, resetMessage } from '../../redux/reducer'
+import { addJedi, setSuccess, setError } from '../../redux/reducer'
 
 import './Jedi.css';
 

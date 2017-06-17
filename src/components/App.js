@@ -43,6 +43,7 @@ class App extends Component {
       <div className="App">
         <div className="App__header">
           <img src={logoJedi} className="App__logo" alt="logo" />
+          <h2>Académie des jedi</h2>
         </div>
         <div className="App__content">
           {(message)

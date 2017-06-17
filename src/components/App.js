@@ -1,17 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import logoJedi from '../../assets/logo-jedi.png';
+import logoJedi from '../assets/logo-jedi.png';
 
 import './App.css';
 
-import { fetchJedi } from '../../redux/reducer';
-import Jedi from "../Jedi/Jedi"
-import JediNewForm from "../Jedi/JediNewForm"
+import { fetchJedi } from '../redux/reducer';
+import Jedi from "./jedi/Jedi"
+import JediForm from "./jedi/JediForm"
 
 function mapStateToProps(state) {
   return {
-    jedi: state.jedi,
+    jedi: state.jedi.list,
+    errors: state.jedi.errors,
   };
 }
 
@@ -39,7 +40,7 @@ class App extends Component {
           <img src={logoJedi} className="App__logo" alt="logo" />
         </div>
         <div className="App__content">
-          <JediNewForm />
+          <JediForm />
           {jediList}
         </div>
       </div>

@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+
+.App__logo {
+  height: 120px;
+}
+
+.App__header {
+  background-color: #222;
+  height: 120px;
+  padding: 20px;
+  color: white;
+}
+
+.App__content {
+  width: 980px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}

@@ -3,6 +3,8 @@
  */
 
 import { combineReducers } from 'redux';
+import axios from 'axios';
+
 
 function jediReducer(state = [], action) {
   switch (action.type) {
@@ -13,6 +15,19 @@ function jediReducer(state = [], action) {
       ];
     default:
       return state;
+  }
+}
+
+
+export function fetchJedi() {
+  return (dispatch) => {
+    axios.get('http://localhost:3001/jedi')
+      .then((res) => {
+        dispatch({
+          type: 'FETCH_FINISH',
+          payload: res.data,
+        });
+      })
   }
 }
 

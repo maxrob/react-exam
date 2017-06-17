@@ -1,9 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import logo from './logo.svg';
+
+import logoJedi from '../../assets/logo-jedi.png';
+
 import './App.css';
 
-import { fetchJedi } from './action';
+import { fetchJedi } from '../../redux/reducer';
+import Jedi from "../Jedi/Jedi"
+import JediNewForm from "../Jedi/JediNewForm"
 
 function mapStateToProps(state) {
   return {
@@ -12,6 +16,7 @@ function mapStateToProps(state) {
 }
 
 class App extends Component {
+
   componentWillMount() {
     this.fetchJedi();
   }
@@ -23,17 +28,20 @@ class App extends Component {
   render() {
     const { jedi } = this.props;
 
+    const jediList = jedi.map((jedi, index) => (
+      <Jedi key={index} jedi={jedi}/>
+    ))
+
+
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+        <div className="App__header">
+          <img src={logoJedi} className="App__logo" alt="logo" />
         </div>
-        {jedi.map((jedi, index) => (
-          <div key={index}>
-            Jedi: id: {jedi.id} name: {jedi.name}
-          </div>
-        ))}
+        <div className="App__content">
+          <JediNewForm />
+          {jediList}
+        </div>
       </div>
     );
   }

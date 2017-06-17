@@ -6,7 +6,8 @@ import { combineReducers } from 'redux';
 import axios from 'axios';
 
 const initialState = {
-  errors: [],
+  message: null,
+  isSuccess: null,
   list: [],
 }
 
@@ -22,10 +23,23 @@ function jediReducer(state = initialState, action) {
         ...state,
         list: [...state.list, action.payload],
       };
-    case 'ADD_FAILED':
+    case 'SET_SUCCESS_MESSAGE':
       return {
         ...state,
-        errors: [...action.error],
+        message: action.message,
+        isSuccess: true
+      };
+    case 'SET_ERROR_MESSAGE':
+      return {
+        ...state,
+        message: action.message,
+        isSuccess: false
+      };
+    case 'RESET_MESSAGE':
+      return {
+        ...state,
+        message: null,
+        isSuccess: null,
       };
     default:
       return state;
@@ -54,12 +68,32 @@ export function addJedi(name) {
           payload: res.data,
         });
       })
-      .catch((err) => {
-        dispatch({
-          type: 'ADD_FAILED',
-          error: err,
-        });
-      })
+  }
+}
+
+export function setSuccess(message) {
+  return (dispatch) => {
+    dispatch({
+      type: 'SET_SUCCESS_MESSAGE',
+      message: message,
+    });
+  }
+}
+
+export function setError(message) {
+  return (dispatch) => {
+    dispatch({
+      type: 'SET_ERROR_MESSAGE',
+      message: message,
+    });
+  }
+}
+
+export function resetMessage() {
+  return (dispatch) => {
+    dispatch({
+      type: 'RESET_MESSAGE'
+    });
   }
 }
 

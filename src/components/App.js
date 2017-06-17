@@ -5,14 +5,16 @@ import logoJedi from '../assets/logo-jedi.png';
 
 import './App.css';
 
-import { fetchJedi } from '../redux/reducer';
+import { fetchJedi, resetMessage } from '../redux/reducer';
 import Jedi from "./jedi/Jedi"
 import JediForm from "./jedi/JediForm"
+import Message from "./message/Message"
 
 function mapStateToProps(state) {
   return {
     jedi: state.jedi.list,
-    errors: state.jedi.errors,
+    message: state.jedi.message,
+    isSuccess: state.jedi.isSuccess,
   };
 }
 
@@ -26,13 +28,16 @@ class App extends Component {
     this.props.dispatch(fetchJedi());
   }
 
+  resetMessage() {
+    this.props.dispatch(resetMessage());
+  }
+
   render() {
-    const { jedi } = this.props;
+    const { jedi, message, isSuccess } = this.props;
 
     const jediList = jedi.map((jedi, index) => (
       <Jedi key={index} jedi={jedi}/>
     ))
-
 
     return (
       <div className="App">
@@ -40,6 +45,10 @@ class App extends Component {
           <img src={logoJedi} className="App__logo" alt="logo" />
         </div>
         <div className="App__content">
+          {(message)
+            ? <Message message={message} isSuccess={isSuccess} reset={this.resetMessage.bind(this)}/>
+            : null
+          }
           <JediForm />
           {jediList}
         </div>
@@ -50,6 +59,8 @@ class App extends Component {
 
 App.propTypes = {
   jedi: PropTypes.array,
+  message: PropTypes.string,
+  isSuccess: PropTypes.bool,
 };
 
 export default connect(

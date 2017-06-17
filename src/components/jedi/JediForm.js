@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { addJedi } from '../../redux/reducer'
+import { addJedi, setSuccess, setError, resetMessage } from '../../redux/reducer'
 
 import './Jedi.css';
 
@@ -27,9 +27,10 @@ class JediForm extends Component {
   handleSubmit() {
     if(this.isFormValid()) {
       this.props.dispatch(addJedi(this.state.name))
-      this.setState({
-        name: ''
-      });
+      this.props.dispatch(setSuccess("Le jedi "+this.state.name+" a été ajouté"))
+      this.setState({ name: '' });
+    } else {
+      this.props.dispatch(setError("Le nom du jedi est requis"))
     }
   }
 

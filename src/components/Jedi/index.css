@@ -25,28 +25,3 @@
     text-align: center;
     line-height: 70px;
 }
-
-.JediForm {
-    width: 100%;
-    height: 50px;
-    margin: 20px 0;
-}
-
-.JediForm__name {
-    height: 30px;
-    width: 200px;
-    padding: 0 20px;
-    margin: 0 20px;
-}
-
-.JediForm__submit {
-    height: 30px;
-    background: #222;
-    color: #fff;
-    border: none;
-    padding: 0 20px;
-}
-
-.JediForm__submit:focus {
-    outline: none;
-}
